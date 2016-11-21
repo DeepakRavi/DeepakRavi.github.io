@@ -1,0 +1,3245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+            <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        <title>A/B Testing</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/theme/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="/theme/css/clean-blog.min.css" rel="stylesheet">
+
+        <!-- Code highlight color scheme -->
+            <link href="/theme/css/code_blocks/darkly.css" rel="stylesheet">
+
+
+        <!-- Custom Fonts -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <meta name="description" content="Spanish Translation A/B Test¶ Company XYZ is a worldwide e-ecommerce site with localized versions of the site. It was observed that ...">
+
+        <meta name="author" content="Deepak Ravi">
+
+        <meta name="tags" content="python firsts">
+
+	                <meta property="og:locale" content="">
+		<meta property="og:site_name" content="Beyond Labels">
+
+	<meta property="og:type" content="article">
+            <meta property="article:author" content="/author/deepak-ravi.html">
+	<meta property="og:url" content="/A-B Test.html">
+	<meta property="og:title" content="A/B Testing">
+	<meta property="article:published_time" content="2016-11-19 14:45:00-08:00">
+            <meta property="og:description" content="Spanish Translation A/B Test¶ Company XYZ is a worldwide e-ecommerce site with localized versions of the site. It was observed that ...">
+
+            <meta property="og:image" content="/theme/images/post-bg.jpg">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Beyond Labels</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+
+                            <li><a href="/pages/about-me.html">About Me!</a></li>
+                            <li><a href="/pages/contact.html">Contact!</a></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+        <header class="intro-header" style="background-image: url('/theme/images/post-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>A/B Testing</h1>
+                        <span class="meta">Posted by
+                                <a href="/author/deepak-ravi.html">Deepak Ravi</a>
+                             on Sat 19 November 2016
+                        </span>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!-- Post Content -->
+    <article>
+        <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+@-moz-document url-prefix() {
+  div.inner_cell {
+    overflow-x: hidden;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
+<style type="text/css">
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Spanish-Translation-A/B-Test">Spanish Translation A/B Test<a class="anchor-link" href="#Spanish-Translation-A/B-Test">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Company XYZ is a worldwide e-ecommerce site with localized versions of the site. It was observed that Spain based users have
+a much higher conversion rate than any other Spanish speaking country. One of the possible reasons could be poor translation.
+However, it was noticed that all Spanish speaking countries had the same translation as that of the Spain based site written by a Spaniard. Hence, it was agreed upon to conduct an A/B test, where two versions of the site would be released. One of these versions would be written by a local translator from the native country and the other would be the original site written by the Spaniard.</p>
+<p>After running the test for five days, the results turned out to be negative. This implies, the local translation did poorly as compared to the original translation.</p>
+<p>The following analysis is to investigate, if the test was actually negative and if so, the possible reasons for it.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span> 
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="kn">as</span> <span class="nn">ticker</span>
+<span class="kn">import</span> <span class="nn">scipy</span> <span class="kn">as</span> <span class="nn">sc</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span> 
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span><span class="p">,</span> <span class="n">export_graphviz</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+<span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">Imputer</span>
+<span class="kn">from</span> <span class="nn">StringIO</span> <span class="kn">import</span> <span class="n">StringIO</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">getmembers</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Reading in the data</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">test_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'test_table.csv'</span><span class="p">)</span>
+<span class="n">user_table</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'user_table.csv'</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">test_table</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>date</th>
+<th>source</th>
+<th>device</th>
+<th>browser_language</th>
+<th>ads_channel</th>
+<th>browser</th>
+<th>conversion</th>
+<th>test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>315281</td>
+<td>2015-12-03</td>
+<td>Direct</td>
+<td>Web</td>
+<td>ES</td>
+<td>NaN</td>
+<td>IE</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>497851</td>
+<td>2015-12-04</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Google</td>
+<td>IE</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<th>2</th>
+<td>848402</td>
+<td>2015-12-04</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Facebook</td>
+<td>Chrome</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>290051</td>
+<td>2015-12-03</td>
+<td>Ads</td>
+<td>Mobile</td>
+<td>Other</td>
+<td>Facebook</td>
+<td>Android_App</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<th>4</th>
+<td>548435</td>
+<td>2015-11-30</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Google</td>
+<td>FireFox</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">user_table</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>sex</th>
+<th>age</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>765821</td>
+<td>M</td>
+<td>20</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<th>1</th>
+<td>343561</td>
+<td>F</td>
+<td>27</td>
+<td>Nicaragua</td>
+</tr>
+<tr>
+<th>2</th>
+<td>118744</td>
+<td>M</td>
+<td>23</td>
+<td>Colombia</td>
+</tr>
+<tr>
+<th>3</th>
+<td>987753</td>
+<td>F</td>
+<td>27</td>
+<td>Venezuela</td>
+</tr>
+<tr>
+<th>4</th>
+<td>554597</td>
+<td>F</td>
+<td>20</td>
+<td>Spain</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Merging the two datasets by checking for unique id's</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">test_table</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">test_table</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">user_table</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_table</span><span class="p">[</span><span class="s1">'user_id'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Comparing the lengths of both the tables</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">test_table</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(453321, 9)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">user_table</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(452867, 4)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This implies the user_table is missing a few id's.
+Therefore when we perform a join operation, we shouldn't loose the user id's in the test table that are not in the user table.</p>
+<p>We could either do a left join or an outer join. Going with the outer join in the following case</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">test_table</span><span class="p">,</span> <span class="n">user_table</span><span class="p">,</span> <span class="n">on</span> <span class="o">=</span> <span class="s1">'user_id'</span><span class="p">,</span> <span class="n">how</span> <span class="o">=</span> <span class="s1">'outer'</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>date</th>
+<th>source</th>
+<th>device</th>
+<th>browser_language</th>
+<th>ads_channel</th>
+<th>browser</th>
+<th>conversion</th>
+<th>test</th>
+<th>sex</th>
+<th>age</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>315281</td>
+<td>2015-12-03</td>
+<td>Direct</td>
+<td>Web</td>
+<td>ES</td>
+<td>NaN</td>
+<td>IE</td>
+<td>1</td>
+<td>0</td>
+<td>M</td>
+<td>32.0</td>
+<td>Spain</td>
+</tr>
+<tr>
+<th>1</th>
+<td>497851</td>
+<td>2015-12-04</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Google</td>
+<td>IE</td>
+<td>0</td>
+<td>1</td>
+<td>M</td>
+<td>21.0</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<th>2</th>
+<td>848402</td>
+<td>2015-12-04</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Facebook</td>
+<td>Chrome</td>
+<td>0</td>
+<td>0</td>
+<td>M</td>
+<td>34.0</td>
+<td>Spain</td>
+</tr>
+<tr>
+<th>3</th>
+<td>290051</td>
+<td>2015-12-03</td>
+<td>Ads</td>
+<td>Mobile</td>
+<td>Other</td>
+<td>Facebook</td>
+<td>Android_App</td>
+<td>0</td>
+<td>1</td>
+<td>F</td>
+<td>22.0</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<th>4</th>
+<td>548435</td>
+<td>2015-11-30</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Google</td>
+<td>FireFox</td>
+<td>0</td>
+<td>1</td>
+<td>M</td>
+<td>19.0</td>
+<td>Mexico</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>(453321, 12)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Summarizing the data. Getting the basic descriptive statistics.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [12]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>conversion</th>
+<th>test</th>
+<th>age</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>count</th>
+<td>453321.000000</td>
+<td>453321.000000</td>
+<td>453321.000000</td>
+<td>452867.000000</td>
+</tr>
+<tr>
+<th>mean</th>
+<td>499937.514728</td>
+<td>0.049579</td>
+<td>0.476446</td>
+<td>27.130740</td>
+</tr>
+<tr>
+<th>std</th>
+<td>288665.193436</td>
+<td>0.217073</td>
+<td>0.499445</td>
+<td>6.776678</td>
+</tr>
+<tr>
+<th>min</th>
+<td>1.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>18.000000</td>
+</tr>
+<tr>
+<th>25%</th>
+<td>249816.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>22.000000</td>
+</tr>
+<tr>
+<th>50%</th>
+<td>500019.000000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>26.000000</td>
+</tr>
+<tr>
+<th>75%</th>
+<td>749522.000000</td>
+<td>0.000000</td>
+<td>1.000000</td>
+<td>31.000000</td>
+</tr>
+<tr>
+<th>max</th>
+<td>1000000.000000</td>
+<td>1.000000</td>
+<td>1.000000</td>
+<td>70.000000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Some-insights-from-the-data-so-far.">Some insights from the data so far.<a class="anchor-link" href="#Some-insights-from-the-data-so-far.">¶</a></h4><ol>
+<li>Average conversion rate is roughly 4%. This is pretty normal. Considered to be industry standard.</li>
+<li>47% of the population belong in the test group and 53% in the control group</li>
+<li>This is a fairly young user base with a mean age of 27 years. Also 75% of the user base is within 30 years of age. </li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Understanding if Spain actually converts best, as compared to other Spanish speaking nations</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [13]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'country'</span><span class="p">)[[</span><span class="s1">'conversion'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>conversion</th>
+</tr>
+<tr>
+<th>country</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Argentina</th>
+<td>0.013994</td>
+</tr>
+<tr>
+<th>Bolivia</th>
+<td>0.048634</td>
+</tr>
+<tr>
+<th>Chile</th>
+<td>0.049704</td>
+</tr>
+<tr>
+<th>Colombia</th>
+<td>0.051332</td>
+</tr>
+<tr>
+<th>Costa Rica</th>
+<td>0.053494</td>
+</tr>
+<tr>
+<th>Ecuador</th>
+<td>0.049072</td>
+</tr>
+<tr>
+<th>El Salvador</th>
+<td>0.050765</td>
+</tr>
+<tr>
+<th>Guatemala</th>
+<td>0.049653</td>
+</tr>
+<tr>
+<th>Honduras</th>
+<td>0.049253</td>
+</tr>
+<tr>
+<th>Mexico</th>
+<td>0.050341</td>
+</tr>
+<tr>
+<th>Nicaragua</th>
+<td>0.053399</td>
+</tr>
+<tr>
+<th>Panama</th>
+<td>0.048089</td>
+</tr>
+<tr>
+<th>Paraguay</th>
+<td>0.048863</td>
+</tr>
+<tr>
+<th>Peru</th>
+<td>0.050258</td>
+</tr>
+<tr>
+<th>Spain</th>
+<td>0.079719</td>
+</tr>
+<tr>
+<th>Uruguay</th>
+<td>0.012821</td>
+</tr>
+<tr>
+<th>Venezuela</th>
+<td>0.049666</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>From the above results, it is quite evident that spain has a conversion rate of nearly 7.9% whereas other nations have conversion rates in the range of 4-5%. Therefore, Spain indeed has the best conversion rate.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Below is the comparison of the performance in test and control groups. It can be seen that the control group did much better than the test group.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [14]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'test'</span><span class="p">)[[</span><span class="s1">'conversion'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>conversion</th>
+</tr>
+<tr>
+<th>test</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0.055179</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.043425</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Below is the comparison of the test and control group without Spain in the picture</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [15]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data_new</span> <span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">data_new</span> <span class="o">=</span> <span class="n">data_new</span><span class="p">[</span><span class="n">data_new</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">!=</span> <span class="s1">'Spain'</span><span class="p">]</span>
+<span class="n">data_new</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>date</th>
+<th>source</th>
+<th>device</th>
+<th>browser_language</th>
+<th>ads_channel</th>
+<th>browser</th>
+<th>conversion</th>
+<th>test</th>
+<th>sex</th>
+<th>age</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1</th>
+<td>497851</td>
+<td>2015-12-04</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Google</td>
+<td>IE</td>
+<td>0</td>
+<td>1</td>
+<td>M</td>
+<td>21.0</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<th>3</th>
+<td>290051</td>
+<td>2015-12-03</td>
+<td>Ads</td>
+<td>Mobile</td>
+<td>Other</td>
+<td>Facebook</td>
+<td>Android_App</td>
+<td>0</td>
+<td>1</td>
+<td>F</td>
+<td>22.0</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<th>4</th>
+<td>548435</td>
+<td>2015-11-30</td>
+<td>Ads</td>
+<td>Web</td>
+<td>ES</td>
+<td>Google</td>
+<td>FireFox</td>
+<td>0</td>
+<td>1</td>
+<td>M</td>
+<td>19.0</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<th>5</th>
+<td>540675</td>
+<td>2015-12-03</td>
+<td>Direct</td>
+<td>Mobile</td>
+<td>ES</td>
+<td>NaN</td>
+<td>Android_App</td>
+<td>0</td>
+<td>1</td>
+<td>F</td>
+<td>22.0</td>
+<td>Venezuela</td>
+</tr>
+<tr>
+<th>6</th>
+<td>863394</td>
+<td>2015-12-04</td>
+<td>SEO</td>
+<td>Mobile</td>
+<td>Other</td>
+<td>NaN</td>
+<td>Android_App</td>
+<td>0</td>
+<td>0</td>
+<td>M</td>
+<td>35.0</td>
+<td>Mexico</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [16]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'test'</span><span class="p">)[[</span><span class="s1">'conversion'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>conversion</th>
+</tr>
+<tr>
+<th>test</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>0.048330</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.043425</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Some-quick-insights">Some quick insights<a class="anchor-link" href="#Some-quick-insights">¶</a></h4><ol>
+<li><p>From the results it is quite evident that both the control group and the test group are faring similarly with the control group performing slightly better.</p>
+</li>
+<li><p>There happened to be more spaniards in the control group as compared to the test group. As their conversion rate was higher, the control group had a higher mean. However, removing them as caused both the control and test group to perform similarly</p>
+</li>
+<li><p>Secondly, for other countries other than spain, it doesn't seem to matter whether the translation is by a local or by a spaniard. The test results are more or less the same</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Doing a welch two sample t test on both the groups to check if there is a statistical difference in the mean of the two groups</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [17]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">zero</span> <span class="o">=</span> <span class="n">data_new</span><span class="p">[</span><span class="n">data_new</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">one</span> <span class="o">=</span> <span class="n">data_new</span><span class="p">[</span><span class="n">data_new</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">sc</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">zero</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">],</span> <span class="n">one</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">],</span> <span class="n">equal_var</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[17]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Ttest_indResult(statistic=7.3939374121344805, pvalue=1.4282994754055316e-13)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Insights">Insights<a class="anchor-link" href="#Insights">¶</a></h4><p>As the p value is less than alpha = .05, we can reject the null hypothesis.
+This implies, we can tell with statistical significance that the two groups have different means.
+Mean of test = 4.3% and mean of control = 4.8%.
+This would be a significant difference in means, if it were true</p>
+<p>Likely reasons for this include</p>
+<ol>
+<li>Control group and test group are not really random</li>
+<li>Not enough data for the sample to truly represent the population</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Converting data to standard format. This includes formatting datetime column</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [18]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data_new</span><span class="p">[</span><span class="s1">'date'</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="n">data_new</span><span class="p">[</span><span class="s1">'date'</span><span class="p">],</span> <span class="n">infer_datetime_format</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plotting to check for any anomalies or biases</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [19]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">time_series</span> <span class="o">=</span> <span class="n">data_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'date'</span><span class="p">,</span><span class="s1">'test'</span><span class="p">])[[</span><span class="s1">'conversion'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">time_series</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[19]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th></th>
+<th>conversion</th>
+</tr>
+<tr>
+<th>date</th>
+<th>test</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th rowspan="2" valign="top">2015-11-30</th>
+<th>0</th>
+<td>0.051378</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.043886</td>
+</tr>
+<tr>
+<th rowspan="2" valign="top">2015-12-01</th>
+<th>0</th>
+<td>0.046287</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.041387</td>
+</tr>
+<tr>
+<th rowspan="2" valign="top">2015-12-02</th>
+<th>0</th>
+<td>0.048550</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.044234</td>
+</tr>
+<tr>
+<th rowspan="2" valign="top">2015-12-03</th>
+<th>0</th>
+<td>0.049284</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.043884</td>
+</tr>
+<tr>
+<th rowspan="2" valign="top">2015-12-04</th>
+<th>0</th>
+<td>0.047043</td>
+</tr>
+<tr>
+<th>1</th>
+<td>0.043491</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [20]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">time_series</span> <span class="o">=</span> <span class="n">time_series</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="s1">'conversion'</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">time_series</span><span class="o">.</span><span class="n">unstack</span><span class="p">()[</span><span class="s1">'conversion'</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">time_series</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>date
+2015-11-30    0.854179
+2015-12-01    0.894141
+2015-12-02    0.911090
+2015-12-03    0.890439
+2015-12-04    0.924486
+dtype: float64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [21]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time_series</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Date'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'test/control'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Line Plot'</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">ticker</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+">
+</img></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Insights">Insights<a class="anchor-link" href="#Insights">¶</a></h4><p>From the above graph it can be seen that over the course of five days, control does continuously better than test.
+Also the variability in the test/control variable is low. Min = 0.87 and Max = 0.93.
+This implies that data collected is sufficient, however there might be a bias in the control or test group.</p>
+<p>Likely cause</p>
+<ol>
+<li><p>Some segment of the data that has a higher or lower conversion rate has found it's way into either test or control thus increasing/decreasing that groups' overall conversion rate.</p>
+</li>
+<li><p>We can use decision trees to identify this. If the split between test and control is truly random, then the tree shouldn't be able to split well.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [22]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data_new</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">lb</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'source'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'source'</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'country'</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'device'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'device'</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'browser_language'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'browser_language'</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'ads_channel'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'ads_channel'</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'browser'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'browser'</span><span class="p">])</span>
+<span class="n">X</span><span class="p">[</span><span class="s1">'sex'</span><span class="p">]</span> <span class="o">=</span> <span class="n">lb</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="s1">'sex'</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">'conversion'</span><span class="p">,</span><span class="s1">'date'</span><span class="p">,</span><span class="s1">'test'</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">data_new</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span>
+<span class="n">X</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>C:\Users\Deepak\Anaconda2\lib\site-packages\numpy\lib\arraysetops.py:200: FutureWarning: numpy not_equal will not check object identity in the future. The comparison did not return the same result as suggested by the identity (`is`)) and will change.
+  flag = np.concatenate(([True], aux[1:] != aux[:-1]))
+</pre>
+</div>
+</div>
+<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>source</th>
+<th>device</th>
+<th>browser_language</th>
+<th>ads_channel</th>
+<th>browser</th>
+<th>sex</th>
+<th>age</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>1</th>
+<td>497851</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>21.0</td>
+<td>10</td>
+</tr>
+<tr>
+<th>3</th>
+<td>290051</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>22.0</td>
+<td>10</td>
+</tr>
+<tr>
+<th>4</th>
+<td>548435</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>19.0</td>
+<td>10</td>
+</tr>
+<tr>
+<th>5</th>
+<td>540675</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>22.0</td>
+<td>16</td>
+</tr>
+<tr>
+<th>6</th>
+<td>863394</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>35.0</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [23]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Checking for missing values</span>
+<span class="n">X</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>user_id               0
+source                0
+device                0
+browser_language      0
+ads_channel           0
+browser               0
+sex                   0
+age                 454
+country               0
+dtype: int64</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [24]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#Index values of all NAN's</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="n">X</span><span class="p">[</span><span class="s1">'age'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">)]</span>
+<span class="n">index</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>Int64Index([   819,   1696,   1934,   2409,   2721,   5042,   7552,   7855,
+              8930,   9082,
+            ...
+            444098, 444581, 444828, 445540, 445950, 446681, 451052, 452302,
+            452342, 453270],
+           dtype='int64', length=454)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Below, imputing the missing values in age column with median age of the column</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [25]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">impute</span> <span class="o">=</span> <span class="n">Imputer</span><span class="p">(</span><span class="n">missing_values</span> <span class="o">=</span> <span class="s1">'NaN'</span><span class="p">,</span> <span class="n">strategy</span> <span class="o">=</span> <span class="s1">'median'</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">copy</span> <span class="o">=</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">imputed</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">impute</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
+<span class="n">imputed</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+<span class="n">imputed</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>user_id</th>
+<th>source</th>
+<th>device</th>
+<th>browser_language</th>
+<th>ads_channel</th>
+<th>browser</th>
+<th>sex</th>
+<th>age</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>497851.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>21.0</td>
+<td>10.0</td>
+</tr>
+<tr>
+<th>1</th>
+<td>290051.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>22.0</td>
+<td>10.0</td>
+</tr>
+<tr>
+<th>2</th>
+<td>548435.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>3.0</td>
+<td>2.0</td>
+<td>2.0</td>
+<td>19.0</td>
+<td>10.0</td>
+</tr>
+<tr>
+<th>3</th>
+<td>540675.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+<td>22.0</td>
+<td>16.0</td>
+</tr>
+<tr>
+<th>4</th>
+<td>863394.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>2.0</td>
+<td>35.0</td>
+<td>10.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Creating an instance of the Decision tree classifier below</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [26]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span> <span class="o">=</span> <span class="s1">'entropy'</span><span class="p">,</span> <span class="n">max_depth</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">min_samples_leaf</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">min_samples_split</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [27]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">imputed</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>DecisionTreeClassifier(class_weight=None, criterion='entropy', max_depth=2,
+            max_features=None, max_leaf_nodes=None, min_samples_leaf=2,
+            min_samples_split=2, min_weight_fraction_leaf=0.0,
+            presort=False, random_state=None, splitter='best')</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Understanding the most important features from the classification</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [28]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">feature_importances_</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 0.,  0.,  0.,  0.,  0.,  0.,  0.,  0.,  1.])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [29]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">imputed</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['user_id', 'source', 'device', 'browser_language', 'ads_channel',
+       'browser', 'sex', 'age', 'country'], dtype=object)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Insights">Insights<a class="anchor-link" href="#Insights">¶</a></h4><p>There seems to be a fair amount of bias in the way control and test groups are separated. 
+This is highlighted by the feature importance variable. 
+Country seems to be an important feature when it comes to separating test and control groups.
+Therefore, the separation is not truly random</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [30]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="nb">zip</span><span class="p">(</span><span class="n">imputed</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">clf</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">feature</span><span class="p">],</span> <span class="n">clf</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_left</span><span class="p">,</span> <span class="n">clf</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_right</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>[('country', 1.5, 1, 4),
+ ('country', 0.5, 2, 3),
+ ('age', -2.0, -1, -1),
+ ('age', -2.0, -1, -1),
+ ('country', 14.5, 5, 6),
+ ('age', -2.0, -1, -1),
+ ('age', -2.0, -1, -1)]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [31]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">clf</span><span class="o">.</span><span class="n">tree_</span><span class="o">.</span><span class="n">children_left</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[31]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 1,  2, -1, -1,  5, -1, -1], dtype=int64)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [32]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">imputed</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[32]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 10.,  16.,   2.,   4.,  15.,   7.,  11.,  14.,   5.,   3.,   1.,
+         6.,   8.,   9.,  13.,  12.,   0.])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [33]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">data_new</span><span class="p">[</span><span class="s1">'country'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['Mexico', 'Venezuela', 'Bolivia', 'Colombia', 'Uruguay',
+       'El Salvador', 'Nicaragua', 'Peru', 'Costa Rica', 'Chile',
+       'Argentina', 'Ecuador', 'Guatemala', 'Honduras', 'Paraguay',
+       'Panama', nan], dtype=object)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [34]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">data_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">'country'</span><span class="p">,</span><span class="s1">'test'</span><span class="p">])[[</span><span class="s1">'conversion'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">data_new</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'country'</span><span class="p">)[[</span><span class="s1">'test'</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">temp1</span> <span class="o">=</span> <span class="n">data_new</span><span class="p">[</span><span class="n">data_new</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">temp2</span> <span class="o">=</span> <span class="n">data_new</span><span class="p">[</span><span class="n">data_new</span><span class="p">[</span><span class="s1">'test'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[];</span> <span class="n">d</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">temp1</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'country'</span><span class="p">)[</span><span class="s1">'conversion'</span><span class="p">]:</span>
+    <span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">temp2</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'country'</span><span class="p">)[</span><span class="s1">'conversion'</span><span class="p">]:</span>
+    <span class="n">c</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    
+<span class="n">p_value</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">16</span><span class="p">):</span>
+    <span class="n">p_value</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sc</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">equal_var</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>    
+    
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">p_value</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">a</span><span class="p">)],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'mean in control'</span><span class="p">,</span> <span class="s1">'mean in test'</span><span class="p">,</span> <span class="s1">'</span><span class="si">%s</span><span class="s1">amples in test group'</span><span class="p">,</span> <span class="s1">'p_value'</span><span class="p">]</span>
+<span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area"><div class="prompt output_prompt">Out[34]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>mean in control</th>
+<th>mean in test</th>
+<th>%samples in test group</th>
+<th>p_value</th>
+</tr>
+<tr>
+<th>country</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>Argentina</th>
+<td>0.015071</td>
+<td>0.013725</td>
+<td>0.799799</td>
+<td>0.335147</td>
+</tr>
+<tr>
+<th>Bolivia</th>
+<td>0.049369</td>
+<td>0.047901</td>
+<td>0.501079</td>
+<td>0.718885</td>
+</tr>
+<tr>
+<th>Chile</th>
+<td>0.048107</td>
+<td>0.051295</td>
+<td>0.500785</td>
+<td>0.302848</td>
+</tr>
+<tr>
+<th>Colombia</th>
+<td>0.052089</td>
+<td>0.050571</td>
+<td>0.498927</td>
+<td>0.423719</td>
+</tr>
+<tr>
+<th>Costa Rica</th>
+<td>0.052256</td>
+<td>0.054738</td>
+<td>0.498964</td>
+<td>0.687876</td>
+</tr>
+<tr>
+<th>Ecuador</th>
+<td>0.049154</td>
+<td>0.048988</td>
+<td>0.494432</td>
+<td>0.961512</td>
+</tr>
+<tr>
+<th>El Salvador</th>
+<td>0.053554</td>
+<td>0.047947</td>
+<td>0.497492</td>
+<td>0.248127</td>
+</tr>
+<tr>
+<th>Guatemala</th>
+<td>0.050643</td>
+<td>0.048647</td>
+<td>0.496066</td>
+<td>0.572107</td>
+</tr>
+<tr>
+<th>Honduras</th>
+<td>0.050906</td>
+<td>0.047540</td>
+<td>0.491013</td>
+<td>0.471463</td>
+</tr>
+<tr>
+<th>Mexico</th>
+<td>0.049495</td>
+<td>0.051186</td>
+<td>0.500257</td>
+<td>0.165544</td>
+</tr>
+<tr>
+<th>Nicaragua</th>
+<td>0.052647</td>
+<td>0.054177</td>
+<td>0.491447</td>
+<td>0.780400</td>
+</tr>
+<tr>
+<th>Panama</th>
+<td>0.046796</td>
+<td>0.049370</td>
+<td>0.502404</td>
+<td>0.705327</td>
+</tr>
+<tr>
+<th>Paraguay</th>
+<td>0.048493</td>
+<td>0.049229</td>
+<td>0.503199</td>
+<td>0.883697</td>
+</tr>
+<tr>
+<th>Peru</th>
+<td>0.049914</td>
+<td>0.050604</td>
+<td>0.498931</td>
+<td>0.771953</td>
+</tr>
+<tr>
+<th>Uruguay</th>
+<td>0.012048</td>
+<td>0.012907</td>
+<td>0.899613</td>
+<td>0.879764</td>
+</tr>
+<tr>
+<th>Venezuela</th>
+<td>0.050344</td>
+<td>0.048978</td>
+<td>0.496194</td>
+<td>0.573702</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">¶</a></h4><p>As it can be seen the p-value associated with all the countries is much greater than 0.05</p>
+<p>This implies that we fail to reject the null hypothesis. Thus, there is no statistically significant difference in means
+between test and control group in each country.</p>
+<p>However, as it can be seen Argentina and Uruguay have the lowest conversion rate of 1%. Also, nearly 80% of the samples from 
+these two countries found it's way into the test group and only 20% in the control group.This can be verified from the 
+third column in the above dataframe.</p>
+<p>Due to their small conversion rate and massive influx of samples into the test group, there was a significant difference
+between the overall test conversion and control conversion rates. It was because of this the mean of the test group was much
+less than the mean of the control group.</p>
+<p>However, it is now clear that the A/B test was insignificant. Both the test and the control group perform similarly. 
+It is clear that the local translation did not affect the conversion rate.</p>
+<p>Side Note</p>
+<ol>
+<li>Argentina and Uruguay have the lowest conversion rate</li>
+<li>Marketing efforts can be directed in this direction to improve conversion rate in these two countries</li>
+</ol>
+</div>
+</div>
+</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+    </article>
+
+        <div class="tags">
+            <p>tags: <a href="/tag/python-firsts.html">python firsts</a></p>
+        </div>
+
+    <hr>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                            <li>
+                                <a href="https://gist.github.com/DeepakRavi">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.facebook.com/deepak.ravi.98">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/ravideepak">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-circle fa-stack-2x"></i>
+                                        <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                    </ul>
+<p class="copyright text-muted">
+    Blog powered by <a href="http://getpelican.com">Pelican</a>,
+    which takes great advantage of <a href="http://python.org">Python</a>.
+</p>                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/theme/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/theme/js/bootstrap.min.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="/theme/js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
